@@ -1,0 +1,22 @@
+# @package _global_
+defaults:
+  - /model: sashimi_small
+  - /dataset: overfit10s
+
+diffusion:
+  T: 200
+  beta_0: 0.0001
+  beta_T: 0.02
+  beta: null
+
+generate:
+  n_samples: 2
+
+train: # Not used in generate.py
+  name: null # Name of experiment (prefix of experiment name)
+  ckpt_iter: max
+  iters_per_ckpt: 1_000
+  iters_per_logging: 20
+  n_iters: 50_001
+  learning_rate: 1e-4
+  batch_size_per_gpu: 1

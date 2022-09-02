@@ -1,0 +1,4 @@
+_name_: single
+file_path: data/samples/piano10s.wav
+segment_length: 160000
+sampling_rate: 16000
