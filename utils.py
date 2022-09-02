@@ -98,13 +98,14 @@ def local_directory(name, model_cfg, diffusion_cfg, dataset_cfg, output_director
     # ckpt_path = output_directory # train_cfg['output_directory']
 
     # generate experiment (local) path
+    dataset_name = dataset_cfg["_name_"]
     model_name = model_identifier(model_cfg)
     diffusion_name = f"_T{diffusion_cfg['T']}_betaT{diffusion_cfg['beta_T']}"
     if model_cfg["unconditional"]:
         data_name = ""
     else:
         data_name = f"_L{dataset_cfg['segment_length']}_hop{dataset_cfg['hop_length']}"
-    local_path = model_name + diffusion_name + data_name + f"_{'uncond' if model_cfg['unconditional'] else 'cond'}"
+    local_path = dataset_name + "_" + model_name + diffusion_name + data_name + f"_{'uncond' if model_cfg['unconditional'] else 'cond'}"
 
     if not (name is None or name == ""):
         local_path = name + "_" + local_path
