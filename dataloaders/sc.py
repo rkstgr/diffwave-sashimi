@@ -1,23 +1,13 @@
 ## Modified based on https://github.com/pytorch/audio/blob/master/torchaudio/datasets/speechcommands.py
 
 import os
-from pathlib import Path
-import numpy as np
-import torch
-from torchvision import datasets, models, transforms
-
-from torch.utils.data.distributed import DistributedSampler
-from scipy.io.wavfile import read as wavread
-
+from glob import glob
 from typing import Tuple
 
+import torch
 import torchaudio
-from torch.utils.data import Dataset
 from torch import Tensor
-from torchaudio.datasets.utils import (
-    download_url,
-    extract_archive,
-)
+from torch.utils.data import Dataset
 
 HASH_DIVIDER = "_nohash_"
 EXCEPT_FOLDER = "_background_noise_"
@@ -51,8 +41,7 @@ class SpeechCommands(Dataset):
 
     def __init__(self, path: str):
         self._path = path # os.path.join(root, folder_in_archive)
-        # walker = walk_files(self._path, suffix=".wav", prefix=True)
-        walker = sorted(str(p) for p in Path(self._path).glob('**/*.wav'))
+        walker = sorted(str(p) for p in glob(f"{self._path}/**/*.wav", recursive=True))
         walker = filter(lambda w: HASH_DIVIDER in w and EXCEPT_FOLDER not in w, walker)
         self._walker = list(walker)
 
