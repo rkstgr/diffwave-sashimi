@@ -1,5 +1,7 @@
 import torch
 from torch.utils.data.distributed import DistributedSampler
+
+from dataloaders.util import SingleSample
 from .sc import SpeechCommands
 from .mel2samp import Mel2Samp
 
@@ -13,6 +15,9 @@ def dataloader(dataset_cfg, batch_size, num_gpus, unconditional=True):
     elif dataset_name == "ljspeech":
         assert not unconditional
         dataset = Mel2Samp(**dataset_cfg)
+    elif dataset_name == "single":
+        assert unconditional
+        dataset = SingleSample(dataset_cfg.file_path)
     dataset_cfg["_name_"] = dataset_name # Restore
 
     # distributed sampler
