@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import numpy as np
 import torch
 
@@ -99,6 +100,9 @@ def local_directory(name, model_cfg, diffusion_cfg, dataset_cfg, output_director
 
     # generate experiment (local) path
     dataset_name = dataset_cfg["_name_"]
+    if dataset_name == "single":
+        sample_name = Path(dataset_cfg['file_path']).stem
+        dataset_name = f"{dataset_name}_{sample_name}"
     model_name = model_identifier(model_cfg)
     diffusion_name = f"_T{diffusion_cfg['T']}_betaT{diffusion_cfg['beta_T']}"
     if model_cfg["unconditional"]:
