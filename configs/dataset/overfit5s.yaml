@@ -1,0 +1,4 @@
+_name_: single
+file_path: data/samples/piano_man5s.wav
+segment_length: 80000
+sampling_rate: 16000
