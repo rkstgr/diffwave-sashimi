@@ -5,9 +5,9 @@ einops
 tqdm
 soundfile
 wandb
-# pytorch-lightning
+pytorch-lightning
 numpy
 scipy
 omegaconf
 librosa
-hydra
+hydra-core
