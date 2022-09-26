@@ -5,6 +5,7 @@ from dataloaders.util import SingleSample
 from .sc import SpeechCommands
 from .mel2samp import Mel2Samp
 
+
 def dataloader(dataset_cfg, batch_size, num_gpus, unconditional=True):
     # TODO would be nice if unconditional was decoupled from dataset
 
@@ -18,7 +19,11 @@ def dataloader(dataset_cfg, batch_size, num_gpus, unconditional=True):
     elif dataset_name == "single":
         assert unconditional
         dataset = SingleSample(dataset_cfg.file_path)
-    dataset_cfg["_name_"] = dataset_name # Restore
+    else:
+        assert not unconditional
+        dataset = Mel2Samp(**dataset_cfg)
+
+    dataset_cfg["_name_"] = dataset_name  # Restore
 
     # distributed sampler
     train_sampler = DistributedSampler(dataset) if num_gpus > 1 else None
