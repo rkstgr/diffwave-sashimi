@@ -1,0 +1,10 @@
+_name_: gtzan
+data_path: data/gtzan
+segment_length: 16_000
+sampling_rate: 22050
+valid: false
+filter_length: 1024
+hop_length: 256
+win_length: 1024
+mel_fmin: 20.0
+mel_fmax: 10_000.0
