@@ -32,7 +32,7 @@ def dataloader(dataset_cfg, batch_size, num_gpus, unconditional=True):
         dataset,
         batch_size=batch_size,
         sampler=train_sampler,
-        num_workers=4,
+        num_workers=8,
         pin_memory=False,
         drop_last=True,
     )
