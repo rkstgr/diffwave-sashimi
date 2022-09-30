@@ -1,6 +1,6 @@
 # @package _global_
 defaults:
-  - /model: sashimi
+  - /model: sashimi_small
   - /dataset: gtzan
 
 diffusion:
@@ -10,11 +10,11 @@ diffusion:
   beta: null
 
 train:
-  iters_per_ckpt: 1000
-  batch_size_per_gpu: 4
+  iters_per_ckpt: 2000
+  batch_size_per_gpu: 16
 
 generate:
-  mel_name: LJ001-0001
+  mel_name: classical.00000
   n_samples: 2
 
 model:
